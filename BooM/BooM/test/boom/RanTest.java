@@ -31,5 +31,9 @@ public class RanTest {
 
     @Test
     public void testRandombomb() {
+        Ran ran = new Ran();
+        int a = ran.Randombomb();
+        assert(a >= 1);
+        assert(a <= 6);
     }
 }
