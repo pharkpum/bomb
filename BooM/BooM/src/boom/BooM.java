@@ -7,24 +7,11 @@ import java.awt.event.MouseEvent;
 
 public class BooM{
     public static int bomb;
-    public static int player = 1;
     public static Ran ran = new Ran();
     public static JLabel BG,l1, l2, l3, l4, l5, l6;
-    public static JLabel boom, player1, player2;
+    public static JLabel boom;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static void init(){
-        player1= new JLabel();
-        ImageIcon p1img = new ImageIcon(imageDir + "\\player1.png");
-        player1.setBounds(50, 350, 200, 200);
-        player1.setOpaque(false);
-        player1.setIcon(p1img);
-        player2= new JLabel();
-        ImageIcon p2img = new ImageIcon(imageDir + "\\player2.png");
-        player2.setBounds(820, 350, 200, 200);
-        player2.setOpaque(false);
-        player2.setIcon(p2img);
-        player2.setVisible(false);
-        
         boom= new JLabel();
         ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
         boom.setBounds(359, 300, 300, 180);
@@ -38,28 +25,30 @@ public class BooM{
         BG.setOpaque(true);
         BG.setIcon(bg);
         
+        
+        
         l1= new JLabel("boom");
         l2= new JLabel("boom");
         l3= new JLabel("boom");
         l4= new JLabel("boom");
         l5= new JLabel("boom");
         l6= new JLabel("boom");
-        l1.setBounds(200, 200, 50, 50);
+        l1.setBounds(100, 200, 50, 50);
         l1.setOpaque(true);
         //l1.setIcon(ii);
-        l2.setBounds(200, 300, 50, 50);
+        l2.setBounds(100, 300, 50, 50);
         l2.setOpaque(true);
         //l2.setIcon(ii);
-        l3.setBounds(200, 400, 50, 50);
+        l3.setBounds(100, 400, 50, 50);
         l3.setOpaque(true);
         //l3.setIcon(ii);
-        l4.setBounds(750, 200, 50, 50);
+        l4.setBounds(850, 200, 50, 50);
         l4.setOpaque(true);
         //l4.setIcon(ii);
-        l5.setBounds(750, 300, 50, 50);
+        l5.setBounds(850, 300, 50, 50);
         l5.setOpaque(true);
         //l5.setIcon(ii);
-        l6.setBounds(750, 400, 50, 50);
+        l6.setBounds(850, 400, 50, 50);
         l6.setOpaque(true);
         //l6.setIcon(ii);
         
@@ -77,7 +66,6 @@ public class BooM{
                 boom.setVisible(true);
             }
             l1.setVisible(false);
-            changePlayer();
         }}); 
         
         l2.addMouseListener(new MouseAdapter() { 
@@ -87,7 +75,6 @@ public class BooM{
                 boom.setVisible(true);
             }
             l2.setVisible(false);
-            changePlayer();
         }}); 
         
         l3.addMouseListener(new MouseAdapter() { 
@@ -97,7 +84,6 @@ public class BooM{
                 boom.setVisible(true);
             }
             l3.setVisible(false);
-            changePlayer();
         }}); 
         
         l4.addMouseListener(new MouseAdapter() { 
@@ -107,7 +93,6 @@ public class BooM{
                 boom.setVisible(true);
             }
             l4.setVisible(false);
-            changePlayer();
         }}); 
         
         l5.addMouseListener(new MouseAdapter() { 
@@ -117,7 +102,6 @@ public class BooM{
                 boom.setVisible(true);
             }
             l5.setVisible(false);
-            changePlayer();
         }}); 
         
         l6.addMouseListener(new MouseAdapter() { 
@@ -127,28 +111,11 @@ public class BooM{
                 boom.setVisible(true);
             }
             l6.setVisible(false);
-            changePlayer();
         }}); 
-    }
-    
-    public static void changePlayer(){
-        if(player == 1){       
-            player2.setVisible(true);
-            player1.setVisible(false);
-            player = 2;
-        }
-        else{
-            player2.setVisible(false);
-            player1.setVisible(true);
-            player = 1;
-        }
     }
     
     public static void reset(){
         bomb = ran.Randombomb();
-        player = 1;
-        player1.setVisible(true);
-        player2.setVisible(false);
         l1.setVisible(true);
         l2.setVisible(true);
         l3.setVisible(true);
@@ -166,10 +133,8 @@ public class BooM{
 
         JLayeredPane layer = new JLayeredPane();
         layer.setPreferredSize(new Dimension(1000, 600));
-        layer.setBorder(BorderFactory.createTitledBorder("BooM! Game"));        
+        layer.setBorder(BorderFactory.createTitledBorder("test"));        
         
-        layer.add(player1);
-        layer.add(player2);
         layer.add(boom);
         layer.add(l1);
         layer.add(l2);
@@ -178,7 +143,6 @@ public class BooM{
         layer.add(l5);
         layer.add(l6);
         layer.add(BG);
-        
      
         f.add(layer); 
         f.setVisible(true);
