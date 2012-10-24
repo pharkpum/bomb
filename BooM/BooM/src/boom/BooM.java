@@ -14,7 +14,7 @@ public class BooM{
     public static void init(){
         boom= new JLabel();
         ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
-        boom.setBounds(15, 225, 300, 200);
+        boom.setBounds(300, 200, 300, 200);
         boom.setOpaque(true);
         boom.setIcon(boomImg);
         boom.setVisible(false);
@@ -44,51 +44,81 @@ public class BooM{
         l6.setOpaque(true);
         //l6.setIcon(ii);
         
+        boom.addMouseListener(new MouseAdapter() { 
+        public void mouseClicked(MouseEvent e) 
+        { 
+            boom.setVisible(false);
+            reset();
+        }}); 
+        
         l1.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l1.setVisible(false);
+            if(bomb == 1){
+                boom.setVisible(true);
+            }
+            l1.setVisible(false);
         }}); 
         
         l2.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l2.setVisible(false);
+            if(bomb == 2){
+                boom.setVisible(true);
+            }
+            l2.setVisible(false);
         }}); 
         
         l3.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l3.setVisible(false);
+            if(bomb == 3){
+                boom.setVisible(true);
+            }
+            l3.setVisible(false);
         }}); 
         
         l4.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l4.setVisible(false);
+            if(bomb == 4){
+                boom.setVisible(true);
+            }
+            l4.setVisible(false);
         }}); 
         
         l5.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l5.setVisible(false);
+            if(bomb == 5){
+                boom.setVisible(true);
+            }
+            l5.setVisible(false);
         }}); 
         
         l6.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
-        JOptionPane.showMessageDialog(null, "Hello");
-        l6.setVisible(false);
+            if(bomb == 6){
+                boom.setVisible(true);
+            }
+            l6.setVisible(false);
         }}); 
+    }
+    
+    public static void reset(){
+        bomb = ran.Randombomb();
+        l1.setVisible(true);
+        l2.setVisible(true);
+        l3.setVisible(true);
+        l4.setVisible(true);
+        l5.setVisible(true);
+        l6.setVisible(true);
     }
     
     public static void main(String[] args) {
         init();
+        bomb = ran.Randombomb();
         JFrame f = new JFrame("BooM! Game");
         f.setSize(1000, 600);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,6 +127,7 @@ public class BooM{
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("test"));        
         
+        layer.add(boom);
         layer.add(l1);
         layer.add(l2);
         layer.add(l3);
