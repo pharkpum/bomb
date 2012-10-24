@@ -6,24 +6,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BooM{
-    public static void main(String[] args) {
-        JFrame f = new JFrame("BooM! Game");
-        f.setSize(1000, 600);
+    public static int bomb;
+    public static Ran ran = new Ran();
+    public static JLabel l1, l2, l3, l4, l5, l6;
+    public static JLabel boom;
+    public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
+    public static void init(){
+        boom= new JLabel();
+        ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
+        boom.setBounds(15, 225, 300, 200);
+        boom.setOpaque(true);
+        boom.setIcon(boomImg);
+        boom.setVisible(false);
         
-        
-       
-        JLayeredPane layer = new JLayeredPane();
-        layer.setPreferredSize(new Dimension(1000, 600));
-        layer.setBorder(BorderFactory.createTitledBorder("test"));
-        
-        //ImageIcon ii = new ImageIcon(curDir + "\\button1.png");
-         //label1
-        final JLabel l1= new JLabel("boom");
-        final JLabel l2= new JLabel("boom");
-        final JLabel l3= new JLabel("boom");
-        final JLabel l4= new JLabel("boom");
-        final JLabel l5= new JLabel("boom");
-        final JLabel l6= new JLabel("boom");
+        l1= new JLabel("boom");
+        l2= new JLabel("boom");
+        l3= new JLabel("boom");
+        l4= new JLabel("boom");
+        l5= new JLabel("boom");
+        l6= new JLabel("boom");
         l1.setBounds(100, 200, 50, 50);
         l1.setOpaque(true);
         //l1.setIcon(ii);
@@ -84,7 +85,17 @@ public class BooM{
         JOptionPane.showMessageDialog(null, "Hello");
         l6.setVisible(false);
         }}); 
-        
+    }
+    
+    public static void main(String[] args) {
+        init();
+        JFrame f = new JFrame("BooM! Game");
+        f.setSize(1000, 600);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLayeredPane layer = new JLayeredPane();
+        layer.setPreferredSize(new Dimension(1000, 600));
+        layer.setBorder(BorderFactory.createTitledBorder("test"));        
         
         layer.add(l1);
         layer.add(l2);
@@ -94,10 +105,6 @@ public class BooM{
         layer.add(l6);
         
         f.add(layer);
-        
-        
-        
-        
         
         f.setVisible(true);
     }
