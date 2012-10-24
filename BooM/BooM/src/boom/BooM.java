@@ -6,36 +6,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BooM{
-<<<<<<< HEAD
-    public static void main(String[] args) {
-        JFrame f = new JFrame("BooM! Game");
-        f.setSize(1000, 600);
-        
-        
-       
-        JLayeredPane layer = new JLayeredPane();
-        layer.setPreferredSize(new Dimension(1000, 600));
-        layer.setBorder(BorderFactory.createTitledBorder("test"));
-        
-        //ImageIcon bg = new ImageIcon(curDir + "\\button1.png");
-        //ImageIcon ii = new ImageIcon(curDir + "\\button1.png");
-        
-        //bglabel
-        final JLabel l0= new JLabel();
-        l0.setSize(1000,600);
-        l0.setOpaque(true);
-        //l0.setBackground(bg);
-        
-       
-                
-         //label1
-        final JLabel l1= new JLabel("boom");
-        final JLabel l2= new JLabel("boom");
-        final JLabel l3= new JLabel("boom");
-        final JLabel l4= new JLabel("boom");
-        final JLabel l5= new JLabel("boom");
-        final JLabel l6= new JLabel("boom");
-=======
     public static int bomb;
     public static Ran ran = new Ran();
     public static JLabel l1, l2, l3, l4, l5, l6;
@@ -55,7 +25,6 @@ public class BooM{
         l4= new JLabel("boom");
         l5= new JLabel("boom");
         l6= new JLabel("boom");
->>>>>>> origin/bomb-effect
         l1.setBounds(100, 200, 50, 50);
         l1.setOpaque(true);
         //l1.setIcon(ii);
@@ -165,10 +134,8 @@ public class BooM{
         layer.add(l4);
         layer.add(l5);
         layer.add(l6);
-        layer.add(l0);
-        
-        f.add(layer);
-        
+     
+        f.add(layer); 
         f.setVisible(true);
     }
 }
