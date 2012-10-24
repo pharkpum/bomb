@@ -8,16 +8,24 @@ import java.awt.event.MouseEvent;
 public class BooM{
     public static int bomb;
     public static Ran ran = new Ran();
-    public static JLabel l1, l2, l3, l4, l5, l6;
+    public static JLabel BG,l1, l2, l3, l4, l5, l6;
     public static JLabel boom;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static void init(){
         boom= new JLabel();
         ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
-        boom.setBounds(300, 200, 300, 200);
+        boom.setBounds(359, 300, 300, 180);
         boom.setOpaque(true);
         boom.setIcon(boomImg);
         boom.setVisible(false);
+        
+        BG= new JLabel();
+        ImageIcon bg = new ImageIcon(imageDir + "\\BGimg.jpg");
+        BG.setBounds(0,0,1000,600);
+        BG.setOpaque(true);
+        BG.setIcon(bg);
+        
+        
         
         l1= new JLabel("boom");
         l2= new JLabel("boom");
@@ -134,6 +142,7 @@ public class BooM{
         layer.add(l4);
         layer.add(l5);
         layer.add(l6);
+        layer.add(BG);
      
         f.add(layer); 
         f.setVisible(true);
