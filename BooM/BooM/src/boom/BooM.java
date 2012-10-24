@@ -16,7 +16,17 @@ public class BooM{
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("test"));
         
+        //ImageIcon bg = new ImageIcon(curDir + "\\button1.png");
         //ImageIcon ii = new ImageIcon(curDir + "\\button1.png");
+        
+        //bglabel
+        final JLabel l0= new JLabel();
+        l0.setSize(1000,600);
+        l0.setOpaque(true);
+        //l0.setBackground(bg);
+        
+       
+                
          //label1
         final JLabel l1= new JLabel("boom");
         final JLabel l2= new JLabel("boom");
@@ -92,6 +102,7 @@ public class BooM{
         layer.add(l4);
         layer.add(l5);
         layer.add(l6);
+        layer.add(l0);
         
         f.add(layer);
         
