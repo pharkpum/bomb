@@ -31,6 +31,5 @@ public class RanTest {
 
     @Test
     public void testRandombomb() {
-        assertEquals(1, 1);
     }
 }
