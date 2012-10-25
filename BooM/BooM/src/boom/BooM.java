@@ -103,8 +103,10 @@ public class BooM {
             if(bomb == 1){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l1.setVisible(false);
-            changePlayer();
         }}); 
         
         l2.addMouseListener(new MouseAdapter() { 
@@ -117,8 +119,10 @@ public class BooM {
             if(bomb == 2){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l2.setVisible(false);
-            changePlayer();
         }}); 
         
         l3.addMouseListener(new MouseAdapter() { 
@@ -131,8 +135,10 @@ public class BooM {
             if(bomb == 3){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l3.setVisible(false);
-            changePlayer();
         }}); 
         
         l4.addMouseListener(new MouseAdapter() { 
@@ -145,8 +151,10 @@ public class BooM {
             if(bomb == 4){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l4.setVisible(false);
-            changePlayer();
         }}); 
         
         l5.addMouseListener(new MouseAdapter() { 
@@ -159,8 +167,10 @@ public class BooM {
             if(bomb == 5){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l5.setVisible(false);
-            changePlayer();
         }}); 
         
         l6.addMouseListener(new MouseAdapter() { 
@@ -173,8 +183,10 @@ public class BooM {
             if(bomb == 6){
                 showBoom();
             }
+            else{
+                changePlayer();
+            }
             l6.setVisible(false); 
-            changePlayer();
         }}); 
     }
     
