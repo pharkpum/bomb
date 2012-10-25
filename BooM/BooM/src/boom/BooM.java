@@ -61,30 +61,31 @@ public class BooM {
         BG.setOpaque(true);
         BG.setIcon(bg);
         
-        l1= new JLabel("boom");
-        l2= new JLabel("boom");
-        l3= new JLabel("boom");
-        l4= new JLabel("boom");
-        l5= new JLabel("boom");
-        l6= new JLabel("boom");
-        l1.setBounds(200, 200, 50, 50);
-        l1.setOpaque(true);
-        //l1.setIcon(ii);
-        l2.setBounds(200, 300, 50, 50);
-        l2.setOpaque(true);
-        //l2.setIcon(ii);
-        l3.setBounds(200, 400, 50, 50);
-        l3.setOpaque(true);
-        //l3.setIcon(ii);
-        l4.setBounds(750, 200, 50, 50);
-        l4.setOpaque(true);
-        //l4.setIcon(ii);
-        l5.setBounds(750, 300, 50, 50);
-        l5.setOpaque(true);
-        //l5.setIcon(ii);
-        l6.setBounds(750, 400, 50, 50);
-        l6.setOpaque(true);
-        //l6.setIcon(ii);
+        l1= new JLabel();
+        l2= new JLabel();
+        l3= new JLabel();
+        l4= new JLabel();
+        l5= new JLabel();
+        l6= new JLabel();
+        l1.setBounds(204, 280, 200, 50);
+        l1.setOpaque(false);
+        l1.setIcon(new ImageIcon(imageDir + "\\lineL.png"));
+        l2.setBounds(204, 380, 200, 50);
+        l2.setOpaque(false);
+        l2.setIcon(new ImageIcon(imageDir + "\\lineL.png"));
+        l3.setBounds(204, 480, 200, 50);
+        l3.setOpaque(false);
+        l3.setIcon(new ImageIcon(imageDir + "\\lineL.png"));
+        
+        l4.setBounds(663, 280, 200, 50);
+        l4.setOpaque(false);
+        l4.setIcon(new ImageIcon(imageDir + "\\lineR.png"));
+        l5.setBounds(663, 380, 200, 50);
+        l5.setOpaque(false);
+        l5.setIcon(new ImageIcon(imageDir + "\\lineR.png"));
+        l6.setBounds(663, 480, 200, 50);
+        l6.setOpaque(false);
+        l6.setIcon(new ImageIcon(imageDir + "\\lineR.png"));
         
         boom.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
