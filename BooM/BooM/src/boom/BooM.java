@@ -17,7 +17,7 @@ public class BooM {
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static String soundDir = System.getProperty("user.dir") + "\\src\\sound";
     public static Timer timer;
-    public static boolean start = false;
+    public static boolean start = false,win=false;
     
     public static void init(){
         player1HealthLabel = new JLabel();
@@ -200,13 +200,30 @@ public class BooM {
         l5.setVisible(false);
         l6.setVisible(false);
         
-        boom.setVisible(true);
+        
         if(player == 1){
             player1Health--;
+            if(player1Health <= 0){
+                win=true;
+                changePlayer();
+                timer.stop();
+                boom.setBounds(200, 100, 600, 400);
+                boom.setOpaque(false);
+                boom.setIcon(new ImageIcon(imageDir + "\\player2win.gif"));
+            }
         }
         else{
             player2Health--;
+            if(player2Health <= 0){
+                win=true;
+                changePlayer();
+                timer.stop();
+                boom.setBounds(200, 100, 600, 400);
+                boom.setOpaque(false);
+                boom.setIcon(new ImageIcon(imageDir + "\\player1win.gif"));
+            }
         }
+        boom.setVisible(true);
         updateHealth();
     }
     
@@ -236,6 +253,17 @@ public class BooM {
     }
     
     public static void reset(){
+        if(win){
+            win=false;
+            player1Health=3;
+            player2Health=3;
+            updateHealth();
+            ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
+            boom.setBounds(359, 300, 300, 180);
+            boom.setOpaque(true);
+            boom.setIcon(boomImg);
+            boom.setVisible(false);
+        }
         step=5;
         ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
         count1.setIcon(count);
