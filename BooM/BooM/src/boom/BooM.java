@@ -25,13 +25,13 @@ public class BooM{
         count1.setIcon(count);
         
         player1= new JLabel();
-        ImageIcon p1img = new ImageIcon(imageDir + "\\player1.png");
-        player1.setBounds(50, 350, 200, 200);
+        ImageIcon p1img = new ImageIcon(imageDir + "\\player1.gif");
+        player1.setBounds(-30, 350, 200, 200);
         player1.setOpaque(false);
         player1.setIcon(p1img);
         player2= new JLabel();
-        ImageIcon p2img = new ImageIcon(imageDir + "\\player2.png");
-        player2.setBounds(820, 350, 200, 200);
+        ImageIcon p2img = new ImageIcon(imageDir + "\\player2.gif");
+        player2.setBounds(810, 320, 220, 240);
         player2.setOpaque(false);
         player2.setIcon(p2img);
         player2.setVisible(false);
