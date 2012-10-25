@@ -2,16 +2,32 @@ package boom;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
 public class BooM{
-    public static int bomb;
+    public static int bomb,step = 5;
     public static Ran ran = new Ran();
     public static JLabel BG,l1, l2, l3, l4, l5, l6;
     public static JLabel boom;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
+    public static Timer timer;
+    
+    
+    
+    
+    
     public static void init(){
+        
+        
+       
+        
+        
+        
+        
         boom= new JLabel();
         ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
         boom.setBounds(359, 300, 300, 180);
@@ -125,6 +141,21 @@ public class BooM{
     }
     
     public static void main(String[] args) {
+        
+        //JOptionPane.showMessageDialog(null ,"Time start");
+        
+        int delay = 1000; //milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+        JOptionPane.showMessageDialog(null ,step);
+        step--;
+        if(step<=0) {
+            timer.stop();}
+        }
+        };
+        timer = new Timer(delay, taskPerformer);
+        timer.start();
+        
         init();
         bomb = ran.Randombomb();
         JFrame f = new JFrame("BooM! Game");
@@ -143,6 +174,7 @@ public class BooM{
         layer.add(l5);
         layer.add(l6);
         layer.add(BG);
+       
      
         f.add(layer); 
         f.setVisible(true);
