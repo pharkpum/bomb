@@ -2,17 +2,28 @@ package boom;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BooM{
-    public static int bomb;
+    public static int bomb,step = 5;
     public static int player = 1;
     public static Ran ran = new Ran();
-    public static JLabel BG,l1, l2, l3, l4, l5, l6;
+    public static JLabel BG,l1, l2, l3, l4, l5, l6,count1;
     public static JLabel boom, player1, player2;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
+    public static Timer timer;
+    public static boolean start = false;
     public static void init(){
+        
+        count1 = new JLabel();
+        ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
+        count1.setBounds(540, 376, 33, 57);
+        count1.setOpaque(false);
+        count1.setIcon(count);
+        
         player1= new JLabel();
         ImageIcon p1img = new ImageIcon(imageDir + "\\player1.png");
         player1.setBounds(50, 350, 200, 200);
@@ -73,6 +84,10 @@ public class BooM{
         l1.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 1){
                 boom.setVisible(true);
             }
@@ -83,6 +98,10 @@ public class BooM{
         l2.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 2){
                 boom.setVisible(true);
             }
@@ -93,6 +112,10 @@ public class BooM{
         l3.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 3){
                 boom.setVisible(true);
             }
@@ -103,6 +126,10 @@ public class BooM{
         l4.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 4){
                 boom.setVisible(true);
             }
@@ -113,6 +140,10 @@ public class BooM{
         l5.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 5){
                 boom.setVisible(true);
             }
@@ -123,6 +154,10 @@ public class BooM{
         l6.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            if(!start){
+                start=true;
+                timer.start();
+            }
             if(bomb == 6){
                 boom.setVisible(true);
             }
@@ -132,6 +167,14 @@ public class BooM{
     }
     
     public static void changePlayer(){
+        
+        step=5;
+        ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
+        count1.setBounds(540, 376, 33, 57);
+        count1.setOpaque(false);
+        count1.setIcon(count);
+        timer.start();
+        
         if(player == 1){       
             player2.setVisible(true);
             player1.setVisible(false);
@@ -145,6 +188,12 @@ public class BooM{
     }
     
     public static void reset(){
+        step=5;
+        ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
+        count1.setBounds(540, 376, 33, 57);
+        count1.setOpaque(false);
+        count1.setIcon(count);
+        timer.start();
         bomb = ran.Randombomb();
         player = 1;
         player1.setVisible(true);
@@ -158,6 +207,29 @@ public class BooM{
     }
     
     public static void main(String[] args) {
+        
+        //JOptionPane.showMessageDialog(null ,"Time start");
+        
+        int delay = 1000; //milliseconds
+        ActionListener taskPerformer = new ActionListener() {
+        public void actionPerformed(ActionEvent evt) {
+            step--;
+            ImageIcon count = new ImageIcon(imageDir + "\\"+step+".jpg");
+            count1.setBounds(540, 376, 33, 57);
+            count1.setOpaque(false);
+            count1.setIcon(count);
+        
+        if(step<=0) {
+            timer.stop();}
+        }
+        };
+        timer = new Timer(delay, taskPerformer);
+        
+        
+        //timer.start();
+        
+        
+        
         init();
         bomb = ran.Randombomb();
         JFrame f = new JFrame("BooM! Game");
@@ -168,6 +240,7 @@ public class BooM{
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("BooM! Game"));        
         
+        layer.add(count1);
         layer.add(player1);
         layer.add(player2);
         layer.add(boom);
