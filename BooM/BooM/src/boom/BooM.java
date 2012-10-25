@@ -7,16 +7,28 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class BooM{
-    public static int bomb,step = 5;
+public class BooM {
+    public static JFrame f = new JFrame("BooM! Game");
+    public static int bomb,step = 5, player1Health = 3, player2Health = 3;
     public static int player = 1;
     public static Ran ran = new Ran();
     public static JLabel BG,l1, l2, l3, l4, l5, l6,count1;
-    public static JLabel boom, player1, player2;
+    public static JLabel boom, player1, player2, player1HealthLabel, player2HealthLabel;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
+    public static String soundDir = System.getProperty("user.dir") + "\\src\\sound";
     public static Timer timer;
     public static boolean start = false;
+    
     public static void init(){
+        player1HealthLabel = new JLabel();
+        player1HealthLabel.setBounds(0, 0, 280, 100);
+        player1HealthLabel.setOpaque(false);
+        player1HealthLabel.setIcon(new ImageIcon(imageDir + "\\P1has3.gif"));
+        
+        player2HealthLabel = new JLabel();
+        player2HealthLabel.setBounds(750, 0, 280, 100);
+        player2HealthLabel.setOpaque(false);
+        player2HealthLabel.setIcon(new ImageIcon(imageDir + "\\P2has3.gif"));
         
         count1 = new JLabel();
         ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
@@ -89,7 +101,7 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 1){
-                boom.setVisible(true);
+                showBoom();
             }
             l1.setVisible(false);
             changePlayer();
@@ -103,7 +115,7 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 2){
-                boom.setVisible(true);
+                showBoom();
             }
             l2.setVisible(false);
             changePlayer();
@@ -117,7 +129,7 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 3){
-                boom.setVisible(true);
+                showBoom();
             }
             l3.setVisible(false);
             changePlayer();
@@ -131,7 +143,7 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 4){
-                boom.setVisible(true);
+                showBoom();
             }
             l4.setVisible(false);
             changePlayer();
@@ -145,7 +157,7 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 5){
-                boom.setVisible(true);
+                showBoom();
             }
             l5.setVisible(false);
             changePlayer();
@@ -159,15 +171,38 @@ public class BooM{
                 timer.start();
             }
             if(bomb == 6){
-                boom.setVisible(true);
+                showBoom();
             }
-            l6.setVisible(false);
+            l6.setVisible(false); 
             changePlayer();
         }}); 
     }
     
-    public static void changePlayer(){
+    public static void showBoom(){
+        timer.stop();
+        l1.setVisible(false);
+        l2.setVisible(false);
+        l3.setVisible(false);
+        l4.setVisible(false);
+        l5.setVisible(false);
+        l6.setVisible(false);
         
+        boom.setVisible(true);
+        if(player == 1){
+            player1Health--;
+        }
+        else{
+            player2Health--;
+        }
+        updateHealth();
+    }
+    
+    public static void updateHealth(){
+        player1HealthLabel.setIcon(new ImageIcon(imageDir + "\\P1has" + player1Health + ".gif"));
+        player2HealthLabel.setIcon(new ImageIcon(imageDir + "\\P2has" + player2Health + ".gif"));
+    }
+    
+    public static void changePlayer(){ 
         step=5;
         ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
         count1.setBounds(540, 376, 33, 57);
@@ -190,49 +225,37 @@ public class BooM{
     public static void reset(){
         step=5;
         ImageIcon count = new ImageIcon(imageDir + "\\5.jpg");
-        count1.setBounds(540, 376, 33, 57);
-        count1.setOpaque(false);
         count1.setIcon(count);
         timer.start();
         bomb = ran.Randombomb();
-        player = 1;
-        player1.setVisible(true);
-        player2.setVisible(false);
         l1.setVisible(true);
         l2.setVisible(true);
         l3.setVisible(true);
         l4.setVisible(true);
         l5.setVisible(true);
         l6.setVisible(true);
+        changePlayer();
     }
     
     public static void main(String[] args) {
-        
-        //JOptionPane.showMessageDialog(null ,"Time start");
-        
         int delay = 1000; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
-        public void actionPerformed(ActionEvent evt) {
-            step--;
-            ImageIcon count = new ImageIcon(imageDir + "\\"+step+".jpg");
-            count1.setBounds(540, 376, 33, 57);
-            count1.setOpaque(false);
-            count1.setIcon(count);
-        
-        if(step<=0) {
-            timer.stop();}
-        }
+            public void actionPerformed(ActionEvent evt) {
+                step--;
+                ImageIcon count = new ImageIcon(imageDir + "\\"+step+".jpg");
+                count1.setBounds(540, 376, 33, 57);
+                count1.setOpaque(false);
+                count1.setIcon(count); 
+                if(step<=0) { 
+                    timer.stop();
+                    showBoom();
+                }
+            }
         };
         timer = new Timer(delay, taskPerformer);
-        
-        
-        //timer.start();
-        
-        
-        
+
         init();
         bomb = ran.Randombomb();
-        JFrame f = new JFrame("BooM! Game");
         f.setSize(1000, 600);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -240,6 +263,8 @@ public class BooM{
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("BooM! Game"));        
         
+        layer.add(player1HealthLabel);
+        layer.add(player2HealthLabel);
         layer.add(count1);
         layer.add(player1);
         layer.add(player2);
@@ -252,7 +277,6 @@ public class BooM{
         layer.add(l6);
         layer.add(BG);
         
-     
         f.add(layer); 
         f.setVisible(true);
     }
