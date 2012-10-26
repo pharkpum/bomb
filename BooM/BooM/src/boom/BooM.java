@@ -20,7 +20,7 @@ public class BooM {
     public static String soundType = "boom.wav";
     public static String iHasLife = "\\iHasLife.png";
     public static String loseLife = "\\youloseLife.png";
-    public static String youHasLife = "\\youHasLife.png";
+    public static String youHasLife = "\\youHasLife.gif";
     public static JLabel boom, player1, player2, player1HealthLabel, player2HealthLabel;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static String soundDir = System.getProperty("user.dir") + "\\src\\sound";
@@ -416,13 +416,13 @@ public class BooM {
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("BooM! Game"));        
         
+        layer.add(boom);
         layer.add(item);
         layer.add(player1HealthLabel);
         layer.add(player2HealthLabel);
         layer.add(count1);
         layer.add(player1);
-        layer.add(player2);
-        layer.add(boom);
+        layer.add(player2);  
         layer.add(l1);
         layer.add(l2);
         layer.add(l3);
