@@ -42,4 +42,18 @@ public class RanTest {
         int a = ran.Randombomb();
         assert(a <= 6);
     }
+    
+    @Test
+    public void testRandomItem1() {
+        Ran ran = new Ran();
+        int a = ran.RandomItem();
+        assert(a >= 1);
+    }
+    
+    @Test
+    public void testRandomItem2() {
+        Ran ran = new Ran();
+        int a = ran.RandomItem();
+        assert(a <= 3);
+    }
 }

@@ -13,4 +13,9 @@ public class Ran {
         int i = (int) ( Math.random()* 5 )+1;
         return i;
     }
+    
+    public int RandomItem(){
+        int i = (int) ( Math.random()* 2 )+1;
+        return i;
+    }
 }

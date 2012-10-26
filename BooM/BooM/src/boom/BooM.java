@@ -6,15 +6,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BooM {
     public static PlaySound playSound = new PlaySound();
     public static JFrame f = new JFrame("BooM! Game");
-    public static int bomb,step = 5, player1Health = 3, player2Health = 3;
+    public static int bomb,step = 5, player1Health = 3, player2Health = 3, itemValue;
     public static int player = 1;
+    public static int item1, item2;
     public static Ran ran = new Ran();
-    public static JLabel BG,l1, l2, l3, l4, l5, l6,count1;
+    public static JLabel BG,l1, l2, l3, l4, l5, l6,count1, item;
     public static String soundType = "boom.wav";
+    public static String iHasLife = "\\iHasLife.png";
+    public static String loseLife = "\\youloseLife.png";
+    public static String youHasLife = "\\youHasLife.png";
     public static JLabel boom, player1, player2, player1HealthLabel, player2HealthLabel;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static String soundDir = System.getProperty("user.dir") + "\\src\\sound";
@@ -22,6 +28,12 @@ public class BooM {
     public static boolean start = false,win=false;
     
     public static void init(){
+        item = new JLabel();
+        item.setBounds(443, 250, 150, 100);
+        item.setOpaque(false);
+        item.setIcon(new ImageIcon(imageDir + iHasLife));
+        item.setVisible(false);
+        
         player1HealthLabel = new JLabel();
         player1HealthLabel.setBounds(0, 0, 280, 100);
         player1HealthLabel.setOpaque(false);
@@ -99,9 +111,14 @@ public class BooM {
         l1.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         {
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 1 || item2 == 1){
+                showItem();
+                getItem();
             }
             if(bomb == 1){
                 showBoom();
@@ -115,9 +132,14 @@ public class BooM {
         l2.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 2 || item2 == 2){
+                showItem();
+                getItem();
             }
             if(bomb == 2){
                 showBoom();
@@ -131,9 +153,14 @@ public class BooM {
         l3.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 3 || item2 == 3){
+                showItem();
+                getItem();
             }
             if(bomb == 3){
                 showBoom();
@@ -147,9 +174,14 @@ public class BooM {
         l4.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 4 || item2 == 4){
+                showItem();
+                getItem();
             }
             if(bomb == 4){
                 showBoom();
@@ -163,9 +195,14 @@ public class BooM {
         l5.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 5 || item2 == 5){
+                showItem();
+                getItem();
             }
             if(bomb == 5){
                 showBoom();
@@ -179,9 +216,14 @@ public class BooM {
         l6.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
         { 
+            item.setVisible(false);
             if(!start){
                 start=true;
                 timer.start();
+            }
+            if(item1 == 6 || item2 == 6){
+                showItem();
+                getItem();
             }
             if(bomb == 6){
                 showBoom();
@@ -191,6 +233,61 @@ public class BooM {
             }
             l6.setVisible(false); 
         }}); 
+    }
+    
+    public static void getItem(){
+        if(itemValue == 1){
+            if(player == 1){
+                if(player1Health < 3){
+                    player1Health++;
+                }
+            }
+            else{
+                if(player2Health < 3){
+                    player2Health++;
+                }
+            }
+        }
+        else if(itemValue == 2){
+            if(player == 1){
+                player2Health--;
+            }
+            else{
+                player1Health--;
+            }
+        }
+        else{
+            if(player == 1){
+                if(player2Health < 3){
+                    player2Health++;
+                }
+            }
+            else{
+                if(player1Health < 3){
+                    player1Health++;
+                }
+            }
+        }
+        if(player1Health <= 0 || player2Health <= 0){
+            showBoom();
+        }
+        updateHealth();
+    }
+    
+    public static void showItem(){
+        playSound.play("item.wav");
+        ran = new Ran();
+        itemValue = ran.RandomItem();
+        if(itemValue == 1){
+            item.setIcon(new ImageIcon(imageDir + iHasLife));
+        }
+        else if(itemValue == 2){
+            item.setIcon(new ImageIcon(imageDir + loseLife));
+        }
+        else{
+            item.setIcon(new ImageIcon(imageDir + youHasLife));
+        }
+        item.setVisible(true);
     }
     
     public static void showBoom(){
@@ -275,6 +372,7 @@ public class BooM {
         count1.setIcon(count);
         timer.start();
         bomb = ran.Randombomb();
+        randomItems();
         l1.setVisible(true);
         l2.setVisible(true);
         l3.setVisible(true);
@@ -282,6 +380,13 @@ public class BooM {
         l5.setVisible(true);
         l6.setVisible(true);
         changePlayer();
+        item.setVisible(false);
+    }
+    
+    public static void randomItems(){
+        item1 = ran.Randombomb();
+        ran = new Ran();
+        item2 = ran.Randombomb();
     }
     
     public static void main(String[] args) {
@@ -301,7 +406,7 @@ public class BooM {
             }
         };
         timer = new Timer(delay, taskPerformer);
-
+        randomItems();
         init();
         bomb = ran.Randombomb();
         f.setSize(1000, 600);
@@ -311,6 +416,7 @@ public class BooM {
         layer.setPreferredSize(new Dimension(1000, 600));
         layer.setBorder(BorderFactory.createTitledBorder("BooM! Game"));        
         
+        layer.add(item);
         layer.add(player1HealthLabel);
         layer.add(player2HealthLabel);
         layer.add(count1);
