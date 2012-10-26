@@ -393,6 +393,10 @@ public class BooM {
         int delay = 1000; //milliseconds
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
+                if(player1Health <= 0 || player2Health <= 0){
+                    showBoom();
+                }
+                
                 step--;
                 ImageIcon count = new ImageIcon(imageDir + "\\"+step+".jpg");
                 count1.setBounds(540, 376, 33, 57);
