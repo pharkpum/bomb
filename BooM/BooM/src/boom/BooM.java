@@ -268,10 +268,10 @@ public class BooM {
                 }
             }
         }
+        updateHealth();
         if(player1Health <= 0 || player2Health <= 0){
             showBoom();
         }
-        updateHealth();
     }
     
     public static void showItem(){
