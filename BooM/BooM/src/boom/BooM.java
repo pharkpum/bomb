@@ -64,7 +64,7 @@ public class BooM {
         
         boom= new JLabel();
         ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
-        boom.setBounds(359, 300, 300, 180);
+        boom.setBounds(359, 350, 300, 180);
         boom.setOpaque(true);
         boom.setIcon(boomImg);
         boom.setVisible(false);
@@ -362,7 +362,7 @@ public class BooM {
             player2Health=3;
             updateHealth();
             ImageIcon boomImg = new ImageIcon(imageDir + "\\explode.gif");
-            boom.setBounds(359, 300, 300, 180);
+            boom.setBounds(359, 350, 300, 180);
             boom.setOpaque(true);
             boom.setIcon(boomImg);
             boom.setVisible(false);
