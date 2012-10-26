@@ -35,12 +35,12 @@ public class BooM {
         item.setVisible(false);
         
         player1HealthLabel = new JLabel();
-        player1HealthLabel.setBounds(0, 0, 280, 100);
+        player1HealthLabel.setBounds(0, 130, 280, 100);
         player1HealthLabel.setOpaque(false);
         player1HealthLabel.setIcon(new ImageIcon(imageDir + "\\P1has3.gif"));
         
         player2HealthLabel = new JLabel();
-        player2HealthLabel.setBounds(750, 0, 280, 100);
+        player2HealthLabel.setBounds(750, 130, 280, 100);
         player2HealthLabel.setOpaque(false);
         player2HealthLabel.setIcon(new ImageIcon(imageDir + "\\P2has3.gif"));
         
