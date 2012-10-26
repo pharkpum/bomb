@@ -8,11 +8,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BooM {
+    public static PlaySound playSound = new PlaySound();
     public static JFrame f = new JFrame("BooM! Game");
     public static int bomb,step = 5, player1Health = 3, player2Health = 3;
     public static int player = 1;
     public static Ran ran = new Ran();
     public static JLabel BG,l1, l2, l3, l4, l5, l6,count1;
+    public static String soundType = "boom.wav";
     public static JLabel boom, player1, player2, player1HealthLabel, player2HealthLabel;
     public static String imageDir = System.getProperty("user.dir") + "\\src\\images";
     public static String soundDir = System.getProperty("user.dir") + "\\src\\sound";
@@ -96,7 +98,7 @@ public class BooM {
         
         l1.addMouseListener(new MouseAdapter() { 
         public void mouseClicked(MouseEvent e) 
-        { 
+        {
             if(!start){
                 start=true;
                 timer.start();
@@ -199,8 +201,7 @@ public class BooM {
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
-        
-        
+         
         if(player == 1){
             player1Health--;
             if(player1Health <= 0){
@@ -210,6 +211,7 @@ public class BooM {
                 boom.setBounds(200, 100, 600, 400);
                 boom.setOpaque(false);
                 boom.setIcon(new ImageIcon(imageDir + "\\player2win.gif"));
+                soundType = "win.wav";
             }
         }
         else{
@@ -221,9 +223,11 @@ public class BooM {
                 boom.setBounds(200, 100, 600, 400);
                 boom.setOpaque(false);
                 boom.setIcon(new ImageIcon(imageDir + "\\player1win.gif"));
+                soundType = "win.wav";
             }
         }
-        boom.setVisible(true);
+        playSound.play(soundType);
+        boom.setVisible(true); 
         updateHealth();
     }
     
@@ -254,6 +258,7 @@ public class BooM {
     
     public static void reset(){
         if(win){
+            soundType = "boom.wav";
             win=false;
             player1Health=3;
             player2Health=3;
