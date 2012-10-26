@@ -201,7 +201,8 @@ public class BooM {
         l4.setVisible(false);
         l5.setVisible(false);
         l6.setVisible(false);
-         
+        
+        
         if(player == 1){
             player1Health--;
             if(player1Health <= 0){
@@ -296,6 +297,7 @@ public class BooM {
                     timer.stop();
                     showBoom();
                 }
+                playSound.play("clock.wav");
             }
         };
         timer = new Timer(delay, taskPerformer);

@@ -30,10 +30,16 @@ public class RanTest {
     }
 
     @Test
-    public void testRandombomb() {
+    public void testRandombomb1() {
         Ran ran = new Ran();
         int a = ran.Randombomb();
         assert(a >= 1);
+    }
+    
+    @Test
+    public void testRandombomb2() {
+        Ran ran = new Ran();
+        int a = ran.Randombomb();
         assert(a <= 6);
     }
 }
